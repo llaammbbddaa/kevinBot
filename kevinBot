@@ -1,0 +1,25 @@
+# IMPORT DISCORD.PY. ALLOWS ACCESS TO DISCORD'S API.
+import discord
+
+# client is the same as bot
+# ENABLE INTENTS
+intents = discord.Intents.default()  # Enables default intents
+intents.message_content = True  # Required to read message content
+# INITIALIZE THE BOT WITH INTENTS
+bot = discord.Client(intents=intents)
+
+# EVENT LISTENER FOR WHEN THE BOT HAS SWITCHED FROM OFFLINE TO ONLINE.
+@bot.event
+async def on_ready():
+    print("kevin is ready.")
+
+# EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
+@bot.event
+async def on_message(message):
+    # CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
+    if message.content == "hello":
+        # SENDS BACK A MESSAGE TO THE CHANNEL.
+        await message.channel.send("hello, i am kevin the cow")
+
+# EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
+bot.run("insert your token here")
